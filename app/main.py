@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from app.core.config import settings
+from app.api.v1.auth import router as auth_router
 
 app = FastAPI(tittle=settings.PROJECT_NAME)
+
+app.include_router(auth_router, prefix="/api/v1/auth", tags=["Auth"])
 
 @app.get("/")
 async def root():

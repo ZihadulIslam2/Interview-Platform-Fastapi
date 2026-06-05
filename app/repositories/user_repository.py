@@ -5,7 +5,7 @@ from app.models.user import User
 
 class UserRepository: 
     async def get_by_email(self, db: AsyncSession, email: str):
-        return = await db.execute(select(User).where(User.email == email))
+        result = await db.execute(select(User).where(User.email == email))
         return result.scalar_one_or_none()
     
     async def create(self, db: AsyncSession, email: str, user: User):

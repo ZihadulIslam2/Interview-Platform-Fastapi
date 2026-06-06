@@ -13,3 +13,14 @@ class UserRepository:
         await db.commit()
         await db.refresh(user)
         return user 
+    
+    async def get_by_id(
+            self,
+            db: AsyncSession,
+            user_id: int,
+    ):
+        result = await db.execute(
+            select(User).where(User.id == user_id)
+        )
+
+        return result.scalar_one_or_none()
